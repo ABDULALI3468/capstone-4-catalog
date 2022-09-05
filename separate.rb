@@ -1,6 +1,5 @@
 class Item
-  attr_accessor :genre, :author, :source, :label, :publish_date
-  attr_reader :id, :archieved
+  attr_reader :id, :genre, :author, :source, :label, :publish_date, :archieved
 
   def initialize(id, publish_date, archieved)
     @id = id
@@ -12,6 +11,26 @@ class Item
     @archieved = archieved
   end
 
+  def genre=(genre)
+    @genre = genre
+  end
+
+  def author=(author)
+    @author = author
+  end
+
+  def source=(source)
+    @source = source
+  end
+
+  def label=(label)
+    @label = label
+  end
+
+  def publish_date=(publish_date)
+    @publish_date = publish_date
+  end
+
   def move_to_archive()
     @archieved = true if can_be_archived?
   end
@@ -19,7 +38,7 @@ class Item
   private
 
   def can_be_archived?
-    # TODO: to  be figured out
+    # todo : to  be figured out
     @publish_date > 10
   end
 end
