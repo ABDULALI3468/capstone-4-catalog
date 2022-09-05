@@ -9,11 +9,11 @@ def main
       puts 'Listing all items'
     when 2
       puts 'Getting items by ID'
-    when 'Q'
+    else
       puts 'App quitting gracefully..'
       break
-    else
-      puts 'Invalid option'
     end
   end
 end
+
+main
