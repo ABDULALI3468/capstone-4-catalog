@@ -58,7 +58,15 @@ rspec
 > * This is My **Linkedin**: [![Linkedin Badge](https://img.shields.io/badge/-ABDUL%20ALI-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/abdul-ali-5400bb216/)](https://www.linkedin.com/in/abdul-ali-5400bb216/)&nbsp;
 > * This is My **Twitter**: [![Twitter Badge](https://img.shields.io/badge/-@mrabdul_ali_-1ca0f1?style=flat-square&labelColor=1ca0f1&logo=twitter&logoColor=white&link=https://twitter.com/mrabdul_ali)](https://twitter.com/mrabdul_ali)&nbsp;
 
+👤 **Hakim**
 
+> * **GitHub**: ![GitHub followers](https://img.shields.io/github/followers/teckim?label=Hakim&style=social)&nbsp;
+> * **Linkedin**: [![Linkedin Badge](https://img.shields.io/badge/-Hakim-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/hakim-bhd/)](https://www.linkedin.com/in/hakim-bhd/)&nbsp;
+
+👤 **Steve**
+
+> * **GitHub**: ![GitHub followers](https://img.shields.io/github/followers/sntakirutimana72?label=Steve&style=social)&nbsp;
+> * **Linkedin**: [![Linkedin Badge](https://img.shields.io/badge/-Steve-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/steve-ntakirutimana/)](https://www.linkedin.com/in/steve-ntakirutimana/)&nbsp;
 
 
 ## 🤝 Contributing
@@ -77,4 +85,4 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
-This project is [MIT](./MIT.md) licensed.
+This project is [MIT](./LICENSE) licensed.
