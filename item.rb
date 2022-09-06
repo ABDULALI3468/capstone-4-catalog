@@ -1,8 +1,8 @@
 class Item
   attr_reader :id, :genre, :author, :source, :label, :publish_date, :archieved
 
-  def initialize(id, publish_date, archieved)
-    @id = id
+  def initialize(publish_date, archieved)
+    @id = rand(1..1000)
     # @genre = genre
     # @author = author
     # @source = source
@@ -43,8 +43,3 @@ class Item
   end
 end
 
-# just for verification😎``
-item = Item.new(1, 22, 11)
-
-puts item.move_to_archive
-puts item.archieved

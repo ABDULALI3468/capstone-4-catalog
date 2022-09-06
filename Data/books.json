@@ -18,5 +18,10 @@
     "publisher": "b",
     "cover_state": "b",
     "published_date": "b"
+  },
+  {
+    "publisher": "Steve",
+    "cover_state": "Good",
+    "published_date": "2022/11/11"
   }
 ]
