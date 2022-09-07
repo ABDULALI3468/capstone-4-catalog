@@ -1,7 +1,7 @@
 require 'json'
 module DataStore
-  def write_books(publish, cover_state, publish_date, books)
-    books.push({ publisher: publish, cover_state: cover_state, published_date: publish_date })
+  def write_books(publisher, cover_state, publish_date, books)
+    books.push({ publisher: publisher, cover_state: cover_state, published_date: publish_date })
     File.write('./Data/books.json', JSON.pretty_generate(books), mode: 'w')
   end
 

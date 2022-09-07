@@ -33,5 +33,15 @@
     "publisher": "Steve",
     "cover_state": "Awesome",
     "published_date": "2022/02/02"
+  },
+  {
+    "publisher": "ALI",
+    "cover_state": "GOOD",
+    "published_date": "2001/01/01"
+  },
+  {
+    "publisher": "AYESHA",
+    "cover_state": "EXCELLENT",
+    "published_date": "2006/01/09"
   }
 ]

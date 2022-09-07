@@ -14,8 +14,8 @@ describe 'Item' do
       expect(@item.publish_date).to eq '2020/11/11'
     end
 
-    it 'Checks for Archieved' do
-      expect(@item.archieved).to eq false
+    it 'Checks for archived' do
+      expect(@item.archived).to eq false
     end
 
     it 'Checks for author SETTER' do

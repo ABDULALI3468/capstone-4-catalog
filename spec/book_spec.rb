@@ -11,7 +11,7 @@ describe 'Book' do
     end
 
     it 'Checks for Publisher' do
-      expect(@book.publish).to eq 'ABDUL ALI'
+      expect(@book.publisher).to eq 'ABDUL ALI'
     end
 
     it 'Checks for Cover State' do
@@ -22,8 +22,8 @@ describe 'Book' do
       expect(@book.publish_date).to eq '2020/11/11'
     end
 
-    it 'Checks for Archieved' do
-      expect(@book.archieved).to eq false
+    it 'Checks for archived' do
+      expect(@book.archived).to eq false
     end
   end
 end
