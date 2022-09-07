@@ -1,50 +1,58 @@
-class Item
-  attr_reader :id, :genre, :author, :source, :label, :publish_date, :archieved
+require_relative 'rand_number'
 
-  def initialize(id, publish_date, archieved)
+class Item
+  attr_accessor :id, :publish_date
+  attr_reader :genre, :author, :source, :label, :archived
+
+  include RandNumber
+
+  def initialize(publish_date, archived, id)
     @id = id
-    # @genre = genre
-    # @author = author
-    # @source = source
-    # @label = label
     @publish_date = publish_date
-    @archieved = archieved
+    @archived = archived
   end
 
+  def as_hash
+    {
+      id: @id,
+      genre: @genre ? @genre.id : nil,
+      author: @author ? @author.id : nil,
+      source: @source ? @source.id : nil,
+      publish_date: @publish_date,
+      archived: @archived
+    }
+  end
+
+  # @param genre [Genre]
   def genre=(genre)
     @genre = genre
+    genre.items << self unless genre.nil? || genre.items.include?(self)
   end
 
   def author=(author)
     @author = author
+    author.items << self unless author.nil? || author.items.include?(self)
   end
 
   def source=(source)
     @source = source
+    source.items << self unless source.nil? || source.items.include?(self)
   end
 
   def label=(label)
     @label = label
+    label.items << self unless label.nil? || label.items.include?(self)
   end
 
-  def publish_date=(publish_date)
-    @publish_date = publish_date
-  end
-
-  def move_to_archive()
-    @archieved = true if can_be_archived?
+  def move_to_archive
+    @archived = true if can_be_archived?
   end
 
   private
 
   def can_be_archived?
-    # todo : to  be figured out
+    # :TODO:
+    #   - decide on :publish_date actual data form
     @publish_date > 10
   end
 end
-
-# just for verification😎``
-item = Item.new(1, 22, 11)
-
-puts item.move_to_archive
-puts item.archieved
