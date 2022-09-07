@@ -22,7 +22,6 @@ describe 'Book' do
       expect(@book.publish_date).to eq '2020/11/11'
     end
 
-
     it 'Checks for Archieved' do
       expect(@book.archieved).to eq false
     end

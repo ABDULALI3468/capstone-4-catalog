@@ -20,10 +20,9 @@ describe 'Label' do
     end
 
     it 'Checks for ITEM length' do
-      item  = Item.new('2020/11/11', false)
+      item = Item.new('2020/11/11', false)
       @label.add_item(item)
       expect(@label.items.length).to eq 1
     end
   end
 end
-

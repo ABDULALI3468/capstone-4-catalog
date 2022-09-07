@@ -23,5 +23,15 @@
     "publisher": "Steve",
     "cover_state": "Good",
     "published_date": "2022/11/11"
+  },
+  {
+    "publisher": "AHMAD",
+    "cover_state": "NORMAL",
+    "published_date": "2022/02/02"
+  },
+  {
+    "publisher": "Steve",
+    "cover_state": "Awesome",
+    "published_date": "2022/02/02"
   }
 ]

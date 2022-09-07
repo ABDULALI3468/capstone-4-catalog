@@ -1,7 +1,6 @@
 require_relative 'item'
 
 class Label < Item
-
   attr_reader :items, :title, :color
 
   def initialize(title, color, publish_date, archieved)
@@ -16,5 +15,4 @@ class Label < Item
     @items << item
     item.label = self
   end
-
 end

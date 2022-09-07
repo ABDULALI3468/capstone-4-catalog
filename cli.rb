@@ -33,7 +33,9 @@ class Cli
 
   def list_books
     @books.each_with_index do |book, index|
-      puts("(#{index})- Publisher: #{book['publisher']} , Cover State: #{book['cover_state']} , Published Date: #{book['publish_date']}")
+      puts("(#{index})- Publisher: #{book['publisher']},
+      Cover State: #{book['cover_state']} ,
+      Published Date: #{book['publish_date']}")
     end
   end
 
@@ -42,7 +44,6 @@ class Cli
       puts("(#{index})- Title: #{label['title']} , Color: #{label['color']}")
     end
   end
-
 
   def read_menu_input(range = (1..3))
     input = gets.chomp.to_i

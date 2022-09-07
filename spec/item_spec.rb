@@ -1,13 +1,11 @@
 require_relative '../item'
 
 describe 'Item' do
-
   before :each do
     @item = Item.new('2020/11/11', false)
   end
 
   context 'Checks the Item class working smoothly' do
-
     it 'Checks for Instance of ITEM' do
       expect(@item).to be_instance_of Item
     end
