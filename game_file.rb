@@ -8,7 +8,8 @@ class GameFile
 
   def read
     return unless File.exist?(@file_path)
-    return JSON.parse(File.read(@file_path))
+
+    JSON.parse(File.read(@file_path))
   end
 
   def save(game_collection = [])

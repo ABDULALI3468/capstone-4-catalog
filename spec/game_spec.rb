@@ -24,12 +24,12 @@ describe Game do
     it 'Should return true when same method in the parent returns true and the last_played_at is > 2 years' do
       test_date = Date.today - ((365 * 2) + 10)
       game = Game.new(publish_date: Date.today, archived: true, multiplayer: true, last_played_at: test_date)
-      
+
       expect(game.send(:can_be_archived?)).to be(true)
 
       test_date = Date.today + 10
       game = Game.new(publish_date: Date.today, archived: true, multiplayer: true, last_played_at: test_date)
-      
+
       expect(game.send(:can_be_archived?)).to be(false)
     end
   end
