@@ -14,9 +14,13 @@ class Cli
     puts '1 - List all books'
     puts '2 - List all labels'
     puts '3 - Add a book'
+    puts '4 - List all music albums'
+    puts '5 - List all genres'
+    puts '6 - Add music album'
+    puts '7 - Add genre'
     puts 'Q - Exit'
 
-    read_menu_input
+    read_menu_input(1..6)
   end
 
   def create_book
