@@ -1,3 +1,4 @@
+require 'json'
 require 'date'
 require_relative 'rspec_helper'
 
@@ -8,7 +9,7 @@ describe Author do
 
   describe 'add_item method' do
     before :each do
-      @item = Item.new(100, Time.now.strftime('%d-%m-%Y'), true)
+      @item = Item.new('2020/11/11', false)
       @size = @author.items.size
 
       @author.add_item @item
@@ -29,7 +30,6 @@ describe Author do
         id: @author.id,
         first_name: @author.first_name,
         last_name: @author.last_name
-        # items: -> { JSON.generate @items }
       }
 
       expect(JSON.generate(@author)).to eq(JSON.generate(json))
