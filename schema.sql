@@ -1,13 +1,15 @@
+CREATE TABLE authors
+(
+  id         INTEGER GENERATED ALWAYS AS IDENTITY,
+  first_name VARCHAR,
+  last_name  VARCHAR,
+
+  PRIMARY KEY (id)
+);
+
 create table genres(
     id   int generated always as identity,
     name varchar(255),
-    primary key(id)
-);
-
-create table authors(
-    id         int generated always as identity,
-    first_name varchar(255),
-    last_name  varchar(255),
     primary key(id)
 );
 
@@ -22,6 +24,32 @@ create table labels(
     title varchar(255),
     color varchar(255),
     primary key(id)
+);
+
+CREATE TABLE books
+(
+  ID           INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  PUBLISHER    VARCHAR,
+  COVER_STATE  VARCHAR,
+  PUBLISH_DATE DATE,
+  ARCHIVED     BOOLEAN
+);
+
+CREATE TABLE games (
+    id INTEGER GENERATED ALWAYS AS IDENTITY,
+    multiplayer BOOLEAN,
+    archived BOOLEAN,
+    last_played_at DATE,
+    publish_date DATE,
+    genre_id INTEGER,
+    author_id INTEGER,
+    source_id INTEGER,
+    label_id INTEGER,
+    PRIMARY KEY(id),
+    FOREIGN KEY (genre_id) REFERENCES genres(id),
+    FOREIGN KEY (author_id) REFERENCES authors(id),
+    FOREIGN KEY (source_id) REFERENCES sources(id),
+    FOREIGN KEY (label_id) REFERENCES labels(id)
 );
 
 create table music_albums(

@@ -1,24 +1,44 @@
+require_relative 'author_collection'
 require_relative 'attribute'
 
 class Author < Attribute
+  attr_reader :id, :items
   attr_accessor :first_name, :last_name
-  attr_reader :id
 
-  def initialize(firstname, lastname, id = number)
-    super(id)
-    @first_name = firstname
-    @last_name = lastname
+  def initialize(first_name:, last_name:, id: number, items: [])
+    @id = id
+    @first_name = first_name
+    @last_name = last_name
+    @items = items
   end
 
-  def name
-    "#{@first_name} #{last_name}"
+  def add_item(item)
+    item.author = self unless item.author == self
+    @items << item unless @items.include? item
   end
 
-  def as_hash
+  def as_json(_options = {})
     {
       id: @id,
-      firstname: @first_name,
-      lastname: @last_name
+      first_name: @first_name,
+      last_name: @last_name
+      # TODO: add this when item can be converted to json
+      # items: -> { JSON.generate @items }
     }
+  end
+
+  def to_json(*options)
+    as_json(*options).to_json(*options)
+  end
+
+  def save
+    create_dir(file_path) unless File.exist?(file_path)
+    File.write(file_path, JSON.pretty_generate(self))
+  end
+
+  def create_dir(_path)
+    dirname = File.dirname(full_path)
+    FileUtils.mkdir_p(dirname) unless File.directory?(dirname)
+    File.new(full_path, 'w')
   end
 end

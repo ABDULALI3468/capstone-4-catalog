@@ -1,19 +1,18 @@
-require_relative 'attribute'
+require_relative 'item'
 
-class Label < Attribute
-  attr_accessor :title, :color
+class Label < Item
+  attr_reader :items, :title, :color
 
-  def initialize(title, color, id = rand(1..100))
-    super(id)
+  def initialize(title, color, publish_date, archived)
+    super(publish_date, archived)
+    @id = rand(1..1000)
     @title = title
     @color = color
+    @items = []
   end
 
-  def as_hash
-    {
-      id: @id,
-      title: @title,
-      color: @color
-    }
+  def add_item(item)
+    @items << item
+    item.label = self
   end
 end

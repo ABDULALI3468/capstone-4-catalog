@@ -1,0 +1,47 @@
+[
+  {
+    "publisher": "ABDUL ALI",
+    "cover_state": "Good",
+    "publish_date": "2020-09-02"
+  },
+  {
+    "publisher": "a",
+    "cover_state": "a",
+    "published_date": "a"
+  },
+  {
+    "publisher": "b",
+    "cover_state": "b",
+    "published_date": "b"
+  },
+  {
+    "publisher": "b",
+    "cover_state": "b",
+    "published_date": "b"
+  },
+  {
+    "publisher": "Steve",
+    "cover_state": "Good",
+    "published_date": "2022/11/11"
+  },
+  {
+    "publisher": "AHMAD",
+    "cover_state": "NORMAL",
+    "published_date": "2022/02/02"
+  },
+  {
+    "publisher": "Steve",
+    "cover_state": "Awesome",
+    "published_date": "2022/02/02"
+  },
+  {
+    "publisher": "ALI",
+    "cover_state": "GOOD",
+    "published_date": "2001/01/01"
+  },
+  {
+    "publisher": "AYESHA",
+    "cover_state": "EXCELLENT",
+    "published_date": "2006/01/09"
+  }
+]

@@ -1,12 +1,12 @@
 require_relative 'rand_number'
 
 class Item
-  attr_accessor :id, :publish_date
-  attr_reader :genre, :author, :source, :label, :archived
+  attr_accessor :publish_date, :publish_date
+  attr_reader :id, :archived, :genre, :author, :source, :label
 
   include RandNumber
 
-  def initialize(publish_date, archived, id)
+  def initialize(publish_date, archived, id = rand(1..1000))
     @id = id
     @publish_date = publish_date
     @archived = archived
