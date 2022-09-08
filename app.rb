@@ -12,6 +12,8 @@ class App
       :albums => AlbumsCollection.new(self)
     }
     @cli = Cli.new
+
+    fetch_collectors
   end
 
   def quit
@@ -19,31 +21,42 @@ class App
   end
 
   def collector(name)
-    @collections[name]
+    @collections[name].items
   end
 
   def print_main_menu
     @cli.print_main_menu
   end
 
-  def process_listing(user_choice)
-    case user_choice
-    when 1  # list books
+  def process_listing(route)
+    case route
+    when 1
       @collections[:books].print
     when 2
+      @collections[:albums].print
+    when 3
+      @collections[:games].print
+    when 4
+      @collections[:genres].print
+    when 5
       @collections[:labels].print
-      # =snip=
-    else
+    when 6
       @collections[:authors].print
+    else
+      @collections[:sources].print
     end
   end
 
   def process_creating(user_choice)
     case user_choice
     when 8
-      'create'
+      create_book
+    when 9
+      create_album
+    when 10
+      create_game
     else
-      'create'
+      create_genre
     end
   end
 
@@ -102,7 +115,7 @@ class App
     return if @collections[:genres].empty?
 
     index = @cli.read_menu_input(1..@collections[:genres].size)
-    album.genre = @collections[:genres].pull(index - 1)
+    album.genre = @collections[:genres].items[index - 1]
 
     puts('A genre successfully set!')
   end
@@ -127,5 +140,9 @@ class App
     puts(exp)
     %w[NO YES].each.with_index { |i, j| puts("#{j}. #{i}") }
     @cli.read_menu_input(0..1) == 1
+  end
+
+  def fetch_collectors
+    @collections.each { |_, collection| collection.fetch }
   end
 end

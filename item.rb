@@ -14,7 +14,7 @@ class Item
   end
 
   def as_str
-    "#[<{self.class}> id: #{@id}, publish_date: #{@publish_date}]"
+    "[<#{self.class}> id: #{@id}, publish_date: #{@publish_date}]"
   end
 
   def as_json

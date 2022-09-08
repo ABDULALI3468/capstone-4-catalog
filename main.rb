@@ -8,7 +8,7 @@ def main
     case choice
     when 1..7
       app.process_listing(choice)
-    when 8..10
+    when 8..11
       app.process_creating(choice)
     when 'Q'
       puts 'App quitting gracefully..'
@@ -16,9 +16,10 @@ def main
     else
       puts
       puts('[ERROR]!!~INVALID_OPTION')
-      puts('-' * 70)
-      puts
     end
+
+    puts('-' * 70)
+    puts
   end
   app.quit
 end

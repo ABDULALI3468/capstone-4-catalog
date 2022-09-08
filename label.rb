@@ -14,6 +14,6 @@ class Label < Attribute
   end
 
   def as_str
-    "#[<{self.class}> id: #{@id}, title: #{@title}, color: #{@color}]"
+    "[<#{self.class}> id: #{@id}, title: #{@title}, color: #{@color}]"
   end
 end

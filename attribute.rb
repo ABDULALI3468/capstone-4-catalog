@@ -37,6 +37,6 @@ class NamedAttribute < Attribute
   end
 
   def as_str
-    "#[<{self.class}> id: #{@id}, name: #{@name}]"
+    "[<#{self.class}> id: #{@id}, name: #{@name}]"
   end
 end

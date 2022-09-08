@@ -18,6 +18,6 @@ class Author < Attribute
   end
 
   def as_str
-    "#[<{self.class}> id: #{@id}, full_name: #{@first_name} #{@last_name}]"
+    "[<#{self.class}> id: #{@id}, full_name: #{@first_name} #{@last_name}]"
   end
 end

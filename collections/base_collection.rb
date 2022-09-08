@@ -9,8 +9,6 @@ class BaseCollection
     @app = app
     @name = name
     @items = []
-
-    from_files
   end
 
   def add(item)
@@ -26,16 +24,19 @@ class BaseCollection
     puts
   end
 
-  def pull(index)
-    @items[index]
-  end
-
   def empty?
     @items.empty?
   end
 
   def size
     @items.size
+  end
+
+  def fetch
+    items = read
+    return if items.nil?
+
+    from_json(items)
   end
 
   private
@@ -46,13 +47,6 @@ class BaseCollection
     item.label = @app.collector(:labels).find { |l| l.id == obj['label'] }
     item.author = @app.collector(:authors).find { |a| a.id == obj['author'] }
     item.source = @app.collector(:sources).find { |s| s.id == obj['source'] }
-  end
-
-  def from_files
-    items = read
-    return if items.nil?
-
-    from_json(items)
   end
 
   def from_json(items)
