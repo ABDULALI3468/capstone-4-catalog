@@ -1,32 +1,26 @@
-require 'json'
 require 'date'
 require_relative 'item'
-require_relative 'game_collection'
 
 class Game < Item
-  alias can_be_archived_parent? can_be_archived?
   attr_accessor :multiplayer, :last_played_at
 
-  def initialize(publish_date:, archived:, multiplayer:, last_played_at:)
-    id = Random.rand(1..1000)
-    super(id, publish_date, archived)
-
+  def initialize(id: number, publish_date:, archived:, multiplayer:, last_played_at:)
+    super(publish_date, id, archived: archived)
     @multiplayer = multiplayer
     @last_played_at = last_played_at
   end
 
-  def as_json(_options = {})
+  def as_json
     {
-      id: @id,
-      publish_date: @publish_date,
-      archived: @archived,
+      **super,
       multiplayer: @multiplayer,
       last_played_at: @last_played_at
     }
   end
 
-  def to_json(*options)
-    as_json(*options).to_json(*options)
+  def as_str
+    playing_style = @multiplayer ? 'Multiplayer' : 'Singleplayer'
+    "[<#{self.class}> #{playing_style} #{@last_played_at}]"
   end
 
   private
@@ -36,6 +30,6 @@ class Game < Item
     last_played_at_date = @last_played_at
     diff_days = now_date - last_played_at_date
 
-    can_be_archived_parent? && diff_days.to_i > (365 * 2) # 2 years
+    super && diff_days.to_i > (365 * 2)
   end
 end

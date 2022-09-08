@@ -1,7 +1,5 @@
-require_relative '../author'
-require_relative '../author_collection'
-require_relative '../item'
 require 'date'
+require_relative 'rspec_helper'
 
 describe Author do
   before :each do

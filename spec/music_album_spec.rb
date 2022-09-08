@@ -1,8 +1,14 @@
 require_relative 'rspec_helper'
 
 describe 'MusicAlbum' do
+  before do
+    @create_album = -> (date, on_spotify) {
+      MusicAlbum(publish_date: Date.parse(date), on_spotify: on_spotify)
+    }
+  end
+
   context 'can_be_archived? evaluates to `TRUE`' do
-    it 'with :on_spotify=true_&_:publish_date>10' do
+    it 'with :on_spotify=true && :publish_date > 10_years' do
       album = MusicAlbum.new(11, true)
       album.move_to_archive
       expect(album.archived).to be_truthy

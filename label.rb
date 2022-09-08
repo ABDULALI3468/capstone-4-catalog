@@ -1,18 +1,19 @@
-require_relative 'item'
+require_relative 'attribute'
 
-class Label < Item
-  attr_reader :items, :title, :color
+class Label < Attribute
+  attr_accessor :title, :color
 
-  def initialize(title, color, publish_date, archived)
-    super(publish_date, archived)
-    @id = rand(1..1000)
+  def initialize(title:, color:, id: number)
+    super(id)
     @title = title
     @color = color
-    @items = []
   end
 
-  def add_item(item)
-    @items << item
-    item.label = self
+  def as_json
+    { id: @id, title: @title, color: @color }
+  end
+
+  def as_str
+    "#[<{self.class}> id: #{@id}, title: #{@title}, color: #{@color}]"
   end
 end

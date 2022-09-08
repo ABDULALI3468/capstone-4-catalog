@@ -1,7 +1,7 @@
 require 'json'
 require 'date'
 require_relative '../game'
-require_relative '../game_collection'
+require_relative '../collections/game_collection'
 
 describe Game do
   before :each do

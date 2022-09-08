@@ -1,80 +1,131 @@
-require_relative 'json_serializer'
 require_relative 'cli'
+require_relative 'collections/collectors'
 
 class App
-  attr_reader :music_albums, :genres
-
-  include JSONSerializer
-
   def initialize
-    @music_albums = []
-    @genres = []
-    @authors = []
-    @sources = []
-    @labels = []
+    @collections = {
+      :games => GamesCollection.new(self),
+      :genres => GenresCollection.new(self),
+      :authors => AuthorsCollection.new(self),
+      :sources => SourcesCollection.new(self),
+      :labels => LabelsCollection.new(self),
+      :albums => AlbumsCollection.new(self)
+    }
     @cli = Cli.new
+  end
 
-    read_files
+  def quit
+    @collections.each { |_, collection| collection.save }
+  end
+
+  def collector(name)
+    @collections[name]
   end
 
   def print_main_menu
     @cli.print_main_menu
   end
 
-  def list_all_albums
-    if @music_albums.empty?
-      puts('No music-albums available')
+  def process_listing(user_choice)
+    case user_choice
+    when 1  # list books
+      @collections[:books].print
+    when 2
+      @collections[:labels].print
+      # =snip=
     else
-      puts('LIST OF MUSIC ALBUMS')
-      puts('=' * 23)
-      @music_albums.each.with_index(1) { |m, j| puts("#{j}. #{m.as_str}") }
+      @collections[:authors].print
     end
   end
 
-  def list_all_genres
-    if @genres.empty?
-      puts('No genres available')
+  def process_creating(user_choice)
+    case user_choice
+    when 8
+      'create'
     else
-      puts('LIST OF GENRES')
-      puts('=' * 18)
-      @genres.each.with_index(1) { |g, j| puts("#{j}. [name:<#{g.name}>]") }
+      'create'
     end
   end
 
-  def create_music_album
+  private
+
+  def parse_date(date_str)
+    begin
+      Date.parse(date_str)
+    rescue StandardError
+      Date.today
+    end
+  end
+
+  def create_game
+    multiplayer = %w[y Y].include? @cli.read_input('Multiplayer [Y/N]')
+    last_played_at = @cli.read_input('Last played date (YYYY-MM-DD)')
+
+    game = Game.new(
+      publish_date: Date.today,
+      archived: true,
+      multiplayer: multiplayer,
+      last_played_at: parse_date(last_played_at)
+    )
+
+    @collections[:games].add(game)
+
+    puts 'Game created successfully!'
+  end
+
+  def create_album
     publish_date = @cli.read_input('publish_date')
     on_spotify = yes_or_no?('Is it available on spotify?')
     archived = yes_or_no?('Is it archived?')
-    album = MusicAlbum.new(publish_date, on_spotify, archived: archived)
-    @music_albums << album
+
+    album = MusicAlbum.new(
+      publish_date: parse_date(publish_date),
+      on_spotify: on_spotify,
+      archived: archived
+    )
+    @collections[:albums].add(album)
     add_genre_to_album(album)
-    puts('A music-album successfully created!')
+
+    puts('MusicAlbum created successfully!')
   end
 
   def create_genre
     name = @cli.read_input('name')
-    @genres << Genre.new(name)
+    @collections[:genres].add(Genre.new(name: name))
     puts('Genre created successfully!')
   end
 
   def add_genre_to_album(album)
     return unless yes_or_no?('Do you want to set genre?')
 
-    list_all_genres
-    return if @genres.empty?
+    @collections[:genres].print
+    return if @collections[:genres].empty?
 
-    index = @cli.read_menu_input(1..@genres.length)
-    album.genre = @genres[index - 1]
+    index = @cli.read_menu_input(1..@collections[:genres].size)
+    album.genre = @collections[:genres].pull(index - 1)
+
     puts('A genre successfully set!')
+  end
+
+  def create_book
+    publisher = @cli.read_input('Who is the Publisher')
+    cover_state = @cli.read_input('What is the cover state')
+    published_date = @cli.read_input('When the book was published')
+
+    book = Book.new(
+      publisher: publisher,
+      cover_state: cover_state,
+      publish_date: parse_date(published_date)
+    )
+
+    @collections[:books].add(book)
+
+    print 'Book created successfully!'
   end
 
   def yes_or_no?(exp)
     puts(exp)
     %w[NO YES].each.with_index { |i, j| puts("#{j}. #{i}") }
     @cli.read_menu_input(0..1) == 1
-  end
-
-  def quit
-    save_files
   end
 end
