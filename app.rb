@@ -9,7 +9,8 @@ class App
       :authors => AuthorsCollection.new(self),
       :sources => SourcesCollection.new(self),
       :labels => LabelsCollection.new(self),
-      :albums => AlbumsCollection.new(self)
+      :albums => AlbumsCollection.new(self),
+      :books => BooksCollection.new(self)
     }
     @cli = Cli.new
 
