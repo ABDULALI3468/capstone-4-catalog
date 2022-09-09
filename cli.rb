@@ -1,5 +1,4 @@
 class Cli
-
   def initialize
     puts 'Welcome to "Catalog Of My Things" app!'
     puts
@@ -23,7 +22,7 @@ class Cli
     options.each.with_index(1) do |option, j|
       puts("#{j} - #{option}")
     end
-    puts("Q - Exit")
+    puts('Q - Exit')
 
     read_menu_input(1..11)
   end

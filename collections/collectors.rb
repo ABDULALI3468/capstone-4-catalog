@@ -5,4 +5,3 @@ require_relative 'genres_collection'
 require_relative 'games_collection'
 require_relative 'books_collection'
 require_relative 'albums_collection'
-

@@ -4,13 +4,13 @@ require_relative 'collections/collectors'
 class App
   def initialize
     @collections = {
-      :games => GamesCollection.new(self),
-      :genres => GenresCollection.new(self),
-      :authors => AuthorsCollection.new(self),
-      :sources => SourcesCollection.new(self),
-      :labels => LabelsCollection.new(self),
-      :albums => AlbumsCollection.new(self),
-      :books => BooksCollection.new(self)
+      games: GamesCollection.new(self),
+      genres: GenresCollection.new(self),
+      authors: AuthorsCollection.new(self),
+      sources: SourcesCollection.new(self),
+      labels: LabelsCollection.new(self),
+      albums: AlbumsCollection.new(self),
+      books: BooksCollection.new(self)
     }
     @cli = Cli.new
 
@@ -64,11 +64,9 @@ class App
   private
 
   def parse_date(date_str)
-    begin
-      Date.parse(date_str)
-    rescue StandardError
-      Date.today
-    end
+    Date.parse(date_str)
+  rescue StandardError
+    Date.today
   end
 
   def create_game

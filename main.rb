@@ -24,6 +24,4 @@ def main
   app.quit
 end
 
-
-
 main

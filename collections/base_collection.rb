@@ -17,7 +17,7 @@ class BaseCollection
 
   def print
     if @items.empty?
-      puts "No record found!"
+      puts 'No record found!'
       return
     end
 

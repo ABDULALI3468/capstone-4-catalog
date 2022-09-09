@@ -3,7 +3,7 @@ require_relative 'rspec_helper'
 
 describe 'MusicAlbum' do
   before do
-    @create_album = -> (date, on_spotify) {
+    @create_album = lambda { |date, on_spotify|
       MusicAlbum.new(publish_date: Date.parse(date), on_spotify: on_spotify)
     }
   end
@@ -33,7 +33,7 @@ describe 'MusicAlbum' do
   context 'set :genre' do
     it 'through self setter method :genre=(obj)' do
       album = @create_album.call('2011/09/08', false)
-      genre = Genre.new(:name => :HIP_HOP)
+      genre = Genre.new(name: :HIP_HOP)
       album.genre = genre
       expect(genre.items.include?(album)).to be_truthy
     end
