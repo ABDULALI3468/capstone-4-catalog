@@ -16,7 +16,10 @@ class BaseCollection
   end
 
   def print
-    return if @items.empty?
+    if @items.empty?
+      puts "No record found!"
+      return
+    end
 
     @items.each.with_index(1) do |item, index|
       puts("#{index}. #{item.as_str}")
