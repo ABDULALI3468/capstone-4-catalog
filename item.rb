@@ -1,26 +1,36 @@
+require 'time'
 require_relative 'rand_number'
 
 class Item
-  attr_accessor :publish_date, :publish_date
+  attr_accessor :publish_date
   attr_reader :id, :archived, :genre, :author, :source, :label
 
   include RandNumber
 
-  def initialize(publish_date, archived, id = rand(1..1000))
+  def initialize(publish_date, id = number, archived: false)
     @id = id
     @publish_date = publish_date
     @archived = archived
   end
 
-  def as_hash
+  def as_str
+    "[<#{self.class}> id: #{@id}, publish_date: #{@publish_date}]"
+  end
+
+  def as_json
     {
       id: @id,
+      label: @label ? @label.id : nil,
       genre: @genre ? @genre.id : nil,
       author: @author ? @author.id : nil,
       source: @source ? @source.id : nil,
       publish_date: @publish_date,
       archived: @archived
     }
+  end
+
+  def to_json(*options)
+    as_json.to_json(*options)
   end
 
   # @param genre [Genre]
@@ -51,8 +61,6 @@ class Item
   private
 
   def can_be_archived?
-    # :TODO:
-    #   - decide on :publish_date actual data form
-    @publish_date > 10
+    (Date.today - @publish_date) / 365 > 10
   end
 end

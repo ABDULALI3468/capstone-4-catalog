@@ -3,20 +3,16 @@ require_relative 'item'
 class MusicAlbum < Item
   attr_accessor :on_spotify
 
-  def initialize(publish_date, on_spotify, id = number, archived: false)
-    super(publish_date, archived, id)
+  def initialize(publish_date:, on_spotify:, id: number, archived: false)
+    super(publish_date, id, archived: archived)
     @on_spotify = on_spotify
   end
 
-  def as_hash
+  def as_json
     {
       **super,
       on_spotify: @on_spotify
     }
-  end
-
-  def as_str
-    "[publish_date:<#{@publish_date}>, on_spotify:<#{@on_spotify ? 'YES' : 'NO'}>]"
   end
 
   private

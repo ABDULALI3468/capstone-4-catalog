@@ -1,8 +1,13 @@
+require 'date'
 require_relative '../book'
 
 describe 'Book' do
   before :each do
-    @book = Book.new(false, 'ABDUL ALI', 'Great', '2020/11/11')
+    @book = Book.new(
+      publisher: 'ABDUL ALI',
+      cover_state: 'Great',
+      publish_date: Date.parse('2020-11-11')
+    )
   end
 
   context 'Check the Book class working smoothly' do
@@ -19,7 +24,7 @@ describe 'Book' do
     end
 
     it 'Checks for date' do
-      expect(@book.publish_date).to eq '2020/11/11'
+      expect(@book.publish_date).to eq Date.parse('2020-11-11')
     end
 
     it 'Checks for archived' do
