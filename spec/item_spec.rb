@@ -1,8 +1,10 @@
+require 'date'
 require_relative '../item'
+require_relative '../author'
 
 describe 'Item' do
   before :each do
-    @item = Item.new('2020/11/11', false)
+    @item = Item.new(Date.parse('2020-11-11'))
   end
 
   context 'Checks the Item class working smoothly' do
@@ -11,7 +13,7 @@ describe 'Item' do
     end
 
     it 'Checks for Published date' do
-      expect(@item.publish_date).to eq '2020/11/11'
+      expect(@item.publish_date).to eq Date.parse('2020/11/11')
     end
 
     it 'Checks for archived' do
@@ -19,8 +21,10 @@ describe 'Item' do
     end
 
     it 'Checks for author SETTER' do
-      @item.author = 'ABDUL ALI'
-      expect(@item.author).to eq 'ABDUL ALI'
+      author = Author.new(first_name: 'ALI', last_name: 'ABDUL')
+      @item.author = author
+      expect(@item.author.first_name).to eq 'ALI'
+      expect(@item.author.last_name).to eq 'ABDUL'
     end
   end
 end

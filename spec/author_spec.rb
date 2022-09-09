@@ -9,7 +9,7 @@ describe Author do
 
   describe 'add_item method' do
     before :each do
-      @item = Item.new('2020/11/11', false)
+      @item = Item.new(Date.parse('2020-11-11'))
       @size = @author.items.size
 
       @author.add_item @item
